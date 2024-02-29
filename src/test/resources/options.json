@@ -1,0 +1,9 @@
+{
+  "mqttServerUrl": "tcp://123.123.123.123:1883",
+  "mqttUsername": "XXXX",
+  "mqttPassword": "XXXX",
+  "forwardEnergyTopic": "some/supla/devices/zamel-mew-01/channels/0/forward",
+  "reverseEnergyTopic": "some/supla/devices/zamel-mew-01/channels/0/reverse",
+  "periodicalBalancing": true,
+  "periodicalFlushCron": "58 59 * * * *"
+}

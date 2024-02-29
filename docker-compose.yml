@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  grid-virtual-storage:
+    environment:
+    - VERSION=${VERSION}
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        VERSION: ${VERSION}
+    image: techwolfpl/grid-virtual-storage:${VERSION}
+    container_name: grid-virtual-storage-container
+  grid-virtual-storage-latest:
+    extends: grid-virtual-storage
+    image: techwolfpl/grid-virtual-storage:latest

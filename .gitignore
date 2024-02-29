@@ -35,3 +35,11 @@ out/
 
 ### VS Code ###
 .vscode/
+
+node/
+
+.frontend-gradle-plugin/resolvePackageManager/package-manager-executable-path.txt
+
+.frontend-gradle-plugin/resolvePackageManager/package-manager-specification.txt
+
+src/main/resources/static/

@@ -1,0 +1,121 @@
+<div class="container">
+  <form *ngIf="data" #myForm="ngForm">
+    <div fxLayout="column" fxLayoutAlign="center">
+      <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center">
+
+        <mat-card fxFlex="25%">
+          <mat-card-header>
+            <mat-card-title>Grid properties - {{data.name}}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+
+            <div fxLayout="column" fxLayoutGap="10px">
+              <mat-form-field>
+                <mat-label>Forward Energy:</mat-label>
+                <input matInput type="number" name="forwardEnergy" [(ngModel)]="data.forwardEnergy" />
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Reverse Energy:</mat-label>
+                <input matInput type="number" name="reverseEnergy" [(ngModel)]="data.reverseEnergy" />
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Real Forward Energy:</mat-label>
+                <input matInput type="number" name="realForwardEnergy" [(ngModel)]="data.realForwardEnergy" />
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Real Reverse Energy:</mat-label>
+                <input matInput type="number" name="realReverseEnergy" [(ngModel)]="data.realReverseEnergy" />
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Energy Charged to Storage:</mat-label>
+                <input matInput type="number" name="energyChargedToStorage" [(ngModel)]="data.energyChargedToStorage" />
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Energy Used from Storage:</mat-label>
+                <input matInput type="number" name="energyUsedFromStorage" [(ngModel)]="data.energyUsedFromStorage" />
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Periodical(1 hour) energy balance</mat-label>
+                <input matInput type="text" name="aaa" [(ngModel)]="data.currentPeriodBalanceSum" />
+              </mat-form-field>
+
+              <mat-slide-toggle [checked]="data.reportingEnabled" (toggleChange)="toggleReadings()" >Process readings</mat-slide-toggle>
+            </div>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card fxFlex="25%">
+          <mat-card-header>
+            <mat-card-title>Storages:</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+
+            <!-- Edycja pola storages -->
+            <div *ngFor="let storage of data.storages; let i = index">
+              <mat-card>
+                <mat-card-header>
+                  <mat-card-subtitle>
+                    {{storage.name}}
+                  </mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                  <div fxLayout="column" fxLayoutGap="10px">
+                    <mat-form-field>
+                      <mat-label> Charged From:</mat-label>
+                      <input matInput type="text" name="storages[{{ i }}].chargedFrom" [(ngModel)]="data.storages[i].chargedFrom" />
+                    </mat-form-field>
+
+                    <mat-form-field>
+                      <mat-label> Charged To:</mat-label>
+                      <input matInput type="text" name="storages[{{ i }}].chargedTo" [(ngModel)]="data.storages[i].chargedTo" />
+                    </mat-form-field>
+
+                    <mat-form-field>
+                      <mat-label> Discharged From:</mat-label>
+                      <input matInput type="text" name="storages[{{ i }}].dischargedFrom" [(ngModel)]="data.storages[i].dischargedFrom" />
+                    </mat-form-field>
+
+                    <mat-form-field>
+                      <mat-label> Discharged To:</mat-label>
+                      <input matInput type="text" name="storages[{{ i }}].dischargedTo" [(ngModel)]="data.storages[i].dischargedTo" />
+                    </mat-form-field>
+
+                    <mat-form-field>
+                      <mat-label> Energy:</mat-label>
+                      <input matInput type="number" name="storages[{{ i }}].energy" [(ngModel)]="data.storages[i].energy" />
+                    </mat-form-field>
+
+                    <mat-form-field>
+                      <mat-label> Charge Efficiency Factor:</mat-label>
+                      <input matInput type="number" name="storages[{{ i }}].chargeEfficiencyFactor"
+                             [(ngModel)]="data.storages[i].chargeEfficiencyFactor" />
+                    </mat-form-field>
+                  </div>
+                </mat-card-content>
+              </mat-card>
+            </div>
+
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="center" style="margin-top: 20px;">
+        <mat-card fxFlex="100%" fxFlex.gt-md="50%">
+          <mat-card-header>
+            Save your storage state
+          </mat-card-header>
+          <mat-card-actions align="end">
+            <button mat-raised-button color="primary" type="submit" (click)="saveEnergyGrid()">Submit</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+
+  </form>
+</div>

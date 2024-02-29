@@ -1,0 +1,18 @@
+{
+  "~": "techwolf-pl/devices/grid-virtual-storage/grids/GRID_NAME",
+  "device": {
+    "ids": "grid-virtual-storage",
+    "mf": "techwolf.pl",
+    "name": "Grid Virtual Storage",
+    "sw": "VERSION"
+  },
+  "name": "Grid GRID_NAME storage STORAGE_NAME - DISPLAY_NAME ",
+  "uniq_id": "grid_virtual_storage_grid_GRID_NAME_storage_STORAGE_NAME_PARAMETER_NAME",
+  "qos": 0,
+  "unit_of_meas": "kWh",
+  "stat_t": "~/state/storages/STORAGE_NAME/PARAMETER_NAME",
+  "val_tpl": "{{ value | round(5,default=none) }}",
+  "dev_cla": "energy",
+  "state_class": "CLASS",
+  "icon": "ICON"
+}

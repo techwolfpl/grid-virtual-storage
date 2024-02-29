@@ -1,6 +1,7 @@
 package io.techwolf.gvs.infrastructure.persistence.entity;
 
 import io.techwolf.gvs.domain.EnergyStorage;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,7 +23,7 @@ import lombok.Setter;
 @Getter
 @Entity
 @Setter
-@EqualsAndHashCode
+@EqualsAndHashCode(exclude = "energyGrid")
 @Table(name = "ENERGY_STORAGE")
 public class EnergyStorageEntity {
   @Id
@@ -34,16 +35,33 @@ public class EnergyStorageEntity {
   private LocalDate chargedTo;
   private LocalDate dischargedFrom;
   private LocalDate dischargedTo;
+  @Column(scale = 10)
   private BigDecimal energy;
+  @Column(scale = 10)
   private BigDecimal chargeEfficiencyFactor;
 
   @ManyToOne
   @JoinColumn
   private EnergyGridEntity energyGrid;
 
-  public EnergyStorageEntity(UUID id, EnergyGridEntity grid) {
+  public EnergyStorageEntity(
+    UUID id,
+    String name,
+    EnergyGridEntity grid,
+    LocalDate chargedFrom,
+    LocalDate chargedTo,
+    LocalDate dischargedFrom,
+    LocalDate dischargedTo
+  ) {
     this.id = id;
+    this.name = name;
     this.energyGrid = grid;
+    this.energy = BigDecimal.ZERO;
+    this.chargeEfficiencyFactor = new BigDecimal(0.8);
+    this.chargedFrom = chargedFrom;
+    this.chargedTo = chargedTo;
+    this.dischargedFrom = dischargedFrom;
+    this.dischargedTo = dischargedTo;
   }
 
   public EnergyStorageEntity update(EnergyStorage e) {

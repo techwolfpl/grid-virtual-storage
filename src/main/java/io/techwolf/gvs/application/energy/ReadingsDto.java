@@ -2,10 +2,14 @@ package io.techwolf.gvs.application.energy;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@AllArgsConstructor
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@Setter
 public class ReadingsDto {
-  private Double gridForwardEnergy;
-  private Double gridReverseEnergy;
+  private Float gridForwardEnergy;
+  private Float gridReverseEnergy;
 }

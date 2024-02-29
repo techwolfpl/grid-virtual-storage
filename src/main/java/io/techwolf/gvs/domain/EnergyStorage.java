@@ -3,11 +3,17 @@ package io.techwolf.gvs.domain;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Builder
 @Getter
+@NoArgsConstructor
+@Setter
+@AllArgsConstructor
 public class EnergyStorage {
   private UUID id;
   private String name;
@@ -29,7 +35,7 @@ public class EnergyStorage {
       this.energy = BigDecimal.ZERO;
       return lacking;
     } else {
-      this.energy.subtract(dischargedEnergy);
+      this.energy = this.energy.subtract(dischargedEnergy);
       return BigDecimal.ZERO;
     }
   }
